@@ -7,7 +7,7 @@ import { Observable } from '../../../node_modules/rxjs';
 @Injectable()
 export class AccountService {
 
-  url: string = "http://localhost:55672/Account/Register";
+  url: string = "http://localhost:55672/api/Account/Register";
 
   accounts: Observable<AccountRegister[]>;
   account: Observable<AccountRegister>;
