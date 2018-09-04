@@ -35,7 +35,8 @@ export class AccountService {
       ConfirmPassword: newAccount.ConfirmPassword,
       Firstname: newAccount.Firstname,
       Lastname: newAccount.Lastname,
-      PhoneNumber: newAccount.PhoneNumber
+      PhoneNumber: newAccount.PhoneNumber,
+      Active: newAccount.Active
     };
     return this.client.post<AccountRegister>(this.url, body, {
       headers
@@ -50,7 +51,8 @@ export class AccountService {
       ConfirmPassword: editAccount.ConfirmPassword,
       Firstname: editAccount.Firstname,
       Lastname: editAccount.Lastname,
-      PhoneNumber: editAccount.PhoneNumber
+      PhoneNumber: editAccount.PhoneNumber,
+      Active: editAccount.Active
     };
     return this.client.put<AccountService>(this.url + '/' + editAccount, body, {
       headers
@@ -65,4 +67,5 @@ export class AccountRegister {
   Firstname: string;
   Lastname: string;
   PhoneNumber: string;
+  Active: boolean;
 }
