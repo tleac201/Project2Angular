@@ -12,6 +12,7 @@ import { IngredientApiComponent } from './ingredient-api/ingredient-api.componen
 import { StandardproductApiComponent } from './standardproduct-api/standardproduct-api.component';
 import { PizzaAPIService} from './Service/pizza-api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ShoppingcartApiComponent } from './shoppingcart-api/shoppingcart-api.component';
 //import { RouterModule } from '../../node_modules/@angular/router';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     RegisterAPIComponent,
     IngredientApiComponent,
-    StandardproductApiComponent
+    StandardproductApiComponent,
+    ShoppingcartApiComponent
   ],
   imports: [
     BrowserModule,

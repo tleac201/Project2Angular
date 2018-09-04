@@ -1,5 +1,7 @@
-<table class="">
-  <tr *ngFor="let ingredient of ingredients">
-    <td>{{ingredient.IngredientName}} - {{ingredient.Description}} - {{ingredient.Price}}</td>
-  </tr>
-</table>
+<h3>Base Price: {{basePrice}}</h3>
+  <form *ngFor="let ingredient of ingredients">
+    <input type="checkbox">{{ingredient.IngredientName}} - {{ingredient.Description}} - {{ingredient.Price}}
+  </form><br>
+  <button type="button">Send to Cart</button>
+  <br><br>
+<a href="home" (click)="SendMeHome()">Go Home</a>

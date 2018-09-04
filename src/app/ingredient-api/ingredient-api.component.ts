@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PizzaAPIService, Ingredients } from '../service/pizza-api.service';
+import { ActivatedRoute, Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-ingredient-api',
@@ -9,8 +10,11 @@ import { PizzaAPIService, Ingredients } from '../service/pizza-api.service';
 export class IngredientApiComponent implements OnInit {
 
   ingredients: Ingredients[];
+  basePrice: number = 10;
+  //selectedIngredient: Ingredients;
   
-  constructor(private ingrendientService: PizzaAPIService) { }
+  constructor(private ingrendientService: PizzaAPIService, 
+    private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
     this.getIngredients();
@@ -25,4 +29,11 @@ export class IngredientApiComponent implements OnInit {
       });
   }
 
+  /*selectIngredient(ingredient: Ingredients) { 
+    this.selectedIngredient = ingredient; 
+  }*/
+
+  SendToHome(){
+    this.router.navigate(['home']);
+  }
 }

@@ -14,8 +14,9 @@ import { resolve, reject } from 'q';
 export class PizzaAPIService {
 
   url: string = "http://localhost:55672/api/Account/Register";
-  urlIngredients: string = "http://localhost:55672/api/Ingredients";
-  urlSP: string = "http://localhost:55672/api/StandardProducts";
+  urlIngredients: string = "https://revproject2api.azurewebsites.net/api/Ingredients";
+  urlSP: string = "https://revproject2api.azurewebsites.net/api/StandardProducts";
+  urlSC: string = "https://revproject2api.azurewebsites.net/api/ShoppingCart"
 
   accounts: Observable<AccountRegister[]>;
   account: Observable<AccountRegister>;
