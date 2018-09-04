@@ -1,3 +1,5 @@
-<p>
-  ingredient-api works!
-</p>
+<table class="">
+  <tr *ngFor="let ingredient of ingredients">
+    <td>{{ingredient.IngredientName}} - {{ingredient.Description}} - {{ingredient.Price}}</td>
+  </tr>
+</table>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-tjs-pizza',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TJsPizzaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
   }
 
+  SendToSP(){
+    this.router.navigate(['standardproductAPI']);
+  }
+
+  SendToCP(){
+    this.router.navigate(['ingredientAPI']);
+  }
 }

@@ -9,10 +9,11 @@ import { PizzaAPIService, Ingredients } from '../service/pizza-api.service';
 export class IngredientApiComponent implements OnInit {
 
   ingredients: Ingredients[];
+  
   constructor(private ingrendientService: PizzaAPIService) { }
 
   ngOnInit() {
-    this.ingrendientService.getIngredients();
+    this.getIngredients();
   }
 
   getIngredients() {
