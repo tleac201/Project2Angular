@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from '../../../node_modules/rxjs';
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Observable, of, throwError, from } from 'rxjs';
+import { delay } from 'rxjs/internal/operators';
+import { catchError, retry } from 'rxjs/operators';
+import { JsonPipe } from '@angular/common';
+import { resolve, reject } from 'q';
 
 
 @Injectable({
-    providedIn : 'root'
+  providedIn: 'root'
 })
 export class PizzaAPIService {
 
@@ -18,9 +22,43 @@ export class PizzaAPIService {
   ingredients: Observable<Ingredients>[];
   standardproduct: Observable<StandardProducts>;
   standardproducts: Observable<StandardProducts[]>;
-
+  token: string;
   constructor(private client: HttpClient) {
 
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+
+  login(login: Login): Observable<string> {
+    //this.token = '123';
+    var options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      observe: 'response' as 'response'
+    };
+    var response =  this.client.post<loginResponse>(
+        this.url = "http://localhost:55672/api/Account/Login", JSON.stringify(login), options
+    ).toPromise().then(
+        x => this.token = x.body.access_token,
+        error => console.error(error)
+      );
+    
+    return of(this.token);
   }
 
   getAccount(id) {
@@ -82,7 +120,7 @@ export class PizzaAPIService {
   addStandardProduct(newStandardProduct: StandardProducts) {
     const headers = new HttpHeaders().set('content-type', 'application/json');
     var body = {
-      StandardProductId : newStandardProduct.StandardProductId,
+      StandardProductId: newStandardProduct.StandardProductId,
       Name: newStandardProduct.Name,
       Description: newStandardProduct.Description,
       Category: newStandardProduct.Category,
@@ -94,8 +132,16 @@ export class PizzaAPIService {
   }
 }
 
-export class AccountRegister 
-{
+export class loginResponse {
+  access_token:string;
+  token_type:string;
+  expires_in:number;
+  userName:string;
+  ".issued":string;
+  ".expires":string;
+}
+
+export class AccountRegister {
   Email: string;
   Password: string;
   ConfirmPassword: string;
@@ -105,19 +151,22 @@ export class AccountRegister
   Active: boolean;
 }
 
-export class Ingredients
-{
+export class Ingredients {
   IngredientId: number;
   IngredientName: string;
   Description: string;
   Price: number;
 }
 
-export class StandardProducts
-{
+export class StandardProducts {
   StandardProductId: number;
   Name: string;
   Description: string;
   Price: number;
   Category: string;
+}
+
+export class Login {
+  Email: string;
+  Password: string;
 }
