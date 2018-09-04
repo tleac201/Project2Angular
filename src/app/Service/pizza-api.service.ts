@@ -9,6 +9,7 @@ export class PizzaAPIService {
 
   url: string = "http://localhost:55672/api/Account/Register";
   urlIngredients: string = "http://localhost:55672/api/Ingredients";
+  urlSP: string = "http://localhost:55672/api/StandardProducts";
 
   accounts: Observable<AccountRegister[]>;
   account: Observable<AccountRegister>;
@@ -64,6 +65,17 @@ export class PizzaAPIService {
   getIngredients() {
     return this.client.get<Ingredients[]>(this.urlIngredients);
   }
+
+  getStandardProduct(id) {
+    var newUrl = this.urlSP + `/${id}`;
+    var standardproduct = this.client.get<StandardProducts>(newUrl);
+    return standardproduct;
+
+  }
+
+  getStandardProducts() {
+    return this.client.get<StandardProducts[]>(this.urlSP);
+  }
 }
 
 export class AccountRegister {
@@ -82,4 +94,12 @@ export class Ingredients
   IngredientName: string;
   Description: string;
   Price: number;
+}
+
+export class StandardProducts{
+  StandardProductId: number;
+  Name: string;
+  Description: string;
+  Price: number;
+  Category: string;
 }

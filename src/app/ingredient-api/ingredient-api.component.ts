@@ -12,6 +12,7 @@ export class IngredientApiComponent implements OnInit {
   constructor(private ingrendientService: PizzaAPIService) { }
 
   ngOnInit() {
+    this.ingrendientService.getIngredients();
   }
 
   getIngredients() {
