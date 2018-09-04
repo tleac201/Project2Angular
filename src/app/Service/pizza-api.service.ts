@@ -5,12 +5,14 @@ import { Observable } from '../../../node_modules/rxjs';
 
 
 @Injectable()
-export class AccountService {
+export class PizzaAPIService {
 
-  url: string = "http://localhost:55672/Account/Register";
+  url: string = "http://localhost:55672/api/Account/Register";
+  urlIngredients: string = "http://localhost:55672/api/Ingredients";
 
   accounts: Observable<AccountRegister[]>;
   account: Observable<AccountRegister>;
+  ingredients: Observable<Ingredients>[];
 
   constructor(private client: HttpClient) {
 
@@ -54,9 +56,13 @@ export class AccountService {
       PhoneNumber: editAccount.PhoneNumber,
       Active: editAccount.Active
     };
-    return this.client.put<AccountService>(this.url + '/' + editAccount, body, {
+    return this.client.put<AccountRegister>(this.url + '/' + editAccount, body, {
       headers
     });
+  }
+
+  getIngredients() {
+    return this.client.get<Ingredients[]>(this.urlIngredients);
   }
 }
 
@@ -68,4 +74,12 @@ export class AccountRegister {
   Lastname: string;
   PhoneNumber: string;
   Active: boolean;
+}
+
+export class Ingredients
+{
+  IngredientId: number;
+  IngredientName: string;
+  Description: string;
+  Price: number;
 }

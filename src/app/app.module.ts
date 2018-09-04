@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { RegisterAPIComponent } from './register-api/register-api.component';
+import { IngredientApiComponent } from './ingredient-api/ingredient-api.component';
 //import { RouterModule } from '../../node_modules/@angular/router';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { RegisterAPIComponent } from './register-api/register-api.component';
     TJsPizzaComponent,
     LoginComponent,
     RegisterComponent,
-    RegisterAPIComponent
+    RegisterAPIComponent,
+    IngredientApiComponent
   ],
   imports: [
     BrowserModule,

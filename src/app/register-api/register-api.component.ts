@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs';
-import { AccountService } from '../service/pizza-api.service';
+import { PizzaAPIService } from '../service/pizza-api.service';
 import { AccountRegister } from '../service/pizza-api.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class RegisterAPIComponent implements OnInit {
   account: AccountRegister;
   accountToAdd: AccountRegister;
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: PizzaAPIService) {
 
   }
 

@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { AccountService } from './pizza-api.service';
+import { PizzaAPIService } from './pizza-api.service';
 
 describe('PizzaAPIService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AccountService]
+      providers: [PizzaAPIService]
     });
   });
 
-  it('should be created', inject([AccountService], (service: AccountService) => {
+  it('should be created', inject([PizzaAPIService], (service: PizzaAPIService) => {
     expect(service).toBeTruthy();
   }));
 });
