@@ -9,6 +9,9 @@ import { AppRoutingModule } from './/app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { RegisterAPIComponent } from './register-api/register-api.component';
 import { IngredientApiComponent } from './ingredient-api/ingredient-api.component';
+import { StandardproductApiComponent } from './standardproduct-api/standardproduct-api.component';
+import { PizzaAPIService} from './Service/pizza-api.service';
+import { HttpClientModule } from '@angular/common/http';
 //import { RouterModule } from '../../node_modules/@angular/router';
 
 @NgModule({
@@ -18,14 +21,16 @@ import { IngredientApiComponent } from './ingredient-api/ingredient-api.componen
     LoginComponent,
     RegisterComponent,
     RegisterAPIComponent,
-    IngredientApiComponent
+    IngredientApiComponent,
+    StandardproductApiComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule, 
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PizzaAPIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

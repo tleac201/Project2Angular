@@ -4,7 +4,9 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from '../../../node_modules/rxjs';
 
 
-@Injectable()
+@Injectable({
+    providedIn : 'root'
+})
 export class PizzaAPIService {
 
   url: string = "http://localhost:55672/api/Account/Register";
@@ -14,6 +16,8 @@ export class PizzaAPIService {
   accounts: Observable<AccountRegister[]>;
   account: Observable<AccountRegister>;
   ingredients: Observable<Ingredients>[];
+  standardproduct: Observable<StandardProducts>;
+  standardproducts: Observable<StandardProducts[]>;
 
   constructor(private client: HttpClient) {
 
@@ -23,7 +27,6 @@ export class PizzaAPIService {
     var newUrl = this.url + `/${id}`;
     var account = this.client.get<AccountRegister>(newUrl);
     return account;
-
   }
 
   getAccounts() {
@@ -70,15 +73,29 @@ export class PizzaAPIService {
     var newUrl = this.urlSP + `/${id}`;
     var standardproduct = this.client.get<StandardProducts>(newUrl);
     return standardproduct;
-
   }
 
   getStandardProducts() {
     return this.client.get<StandardProducts[]>(this.urlSP);
   }
+
+  addStandardProduct(newStandardProduct: StandardProducts) {
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    var body = {
+      StandardProductId : newStandardProduct.StandardProductId,
+      Name: newStandardProduct.Name,
+      Description: newStandardProduct.Description,
+      Category: newStandardProduct.Category,
+      Price: newStandardProduct.Price
+    };
+    return this.client.post<StandardProducts>(this.url, body, {
+      headers
+    });
+  }
 }
 
-export class AccountRegister {
+export class AccountRegister 
+{
   Email: string;
   Password: string;
   ConfirmPassword: string;
@@ -96,7 +113,8 @@ export class Ingredients
   Price: number;
 }
 
-export class StandardProducts{
+export class StandardProducts
+{
   StandardProductId: number;
   Name: string;
   Description: string;

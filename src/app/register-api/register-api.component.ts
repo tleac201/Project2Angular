@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs';
-import { PizzaAPIService } from '../service/pizza-api.service';
 import { AccountRegister } from '../service/pizza-api.service';
+import { PizzaAPIService } from '../service/pizza-api.service';
 
 @Component({
   selector: 'app-register-api',

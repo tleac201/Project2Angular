@@ -24,4 +24,8 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['register']);
   }
 
+  SendToSP(){
+    this.router.navigate(['standardproductAPI']);
+  }
+
 }
