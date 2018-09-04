@@ -13,7 +13,7 @@ export class StandardproductApiComponent implements OnInit {
   standardproducts: StandardProducts[];
   standardproduct: StandardProducts;
   standardproductToAdd: StandardProducts;
-  selectedSP: StandardProducts[];
+  //selectedSP: StandardProducts[];
 
   constructor(private standardproductService: PizzaAPIService, 
     private route:ActivatedRoute, private router:Router ) { }

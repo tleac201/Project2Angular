@@ -14,7 +14,9 @@ export class IngredientApiComponent implements OnInit {
   //selectedIngredient: Ingredients;
   
   constructor(private ingrendientService: PizzaAPIService, 
-    private route:ActivatedRoute, private router:Router) { }
+    private route:ActivatedRoute, private router:Router) {
+      
+    }
 
   ngOnInit() {
     this.getIngredients();
