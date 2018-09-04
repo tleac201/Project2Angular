@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StandardProducts } from '../service/pizza-api.service';
 import { PizzaAPIService } from '../service/pizza-api.service';
+import { ActivatedRoute, Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-standardproduct-api',
@@ -13,7 +14,8 @@ export class StandardproductApiComponent implements OnInit {
   standardproduct: StandardProducts;
   standardproductToAdd: StandardProducts;
 
-  constructor(private standardproductService: PizzaAPIService) { }
+  constructor(private standardproductService: PizzaAPIService, 
+    private route:ActivatedRoute, private router:Router ) { }
 
   ngOnInit() {
     this.getStandardProducts()
@@ -29,7 +31,7 @@ export class StandardproductApiComponent implements OnInit {
   }
 
   getStandardProducts() {
-    console.log("component:getstandardProducts");
+    //console.log("component:getstandardProducts");
     this.standardproductService.getStandardProducts()
       .subscribe(a => {
         console.log(a);
@@ -47,5 +49,9 @@ export class StandardproductApiComponent implements OnInit {
       err => {
         console.log("Error occurred: " + err);
       };
+    }
+
+    SendToHome(){
+      this.router.navigate(['home']);
     }
 }

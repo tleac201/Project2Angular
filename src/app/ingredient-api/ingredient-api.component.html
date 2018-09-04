@@ -1,5 +1,9 @@
+<h3>Base Price:</h3>
 <table class="">
   <tr *ngFor="let ingredient of ingredients">
     <td>{{ingredient.IngredientName}} - {{ingredient.Description}} - {{ingredient.Price}}</td>
   </tr>
 </table>
+<br>
+
+<a href="home" (click)="SendMeHome()">Go Home</a>
