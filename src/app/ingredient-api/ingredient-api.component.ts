@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '../../../node_modules/@angular/router';
 export class IngredientApiComponent implements OnInit {
 
   ingredients: Ingredients[];
+  basePrice: number = 10;
+  //selectedIngredient: Ingredients;
   
   constructor(private ingrendientService: PizzaAPIService, 
     private route:ActivatedRoute, private router:Router) { }
@@ -26,6 +28,10 @@ export class IngredientApiComponent implements OnInit {
         console.log(this.ingredients);
       });
   }
+
+  /*selectIngredient(ingredient: Ingredients) { 
+    this.selectedIngredient = ingredient; 
+  }*/
 
   SendToHome(){
     this.router.navigate(['home']);

@@ -13,6 +13,7 @@ export class StandardproductApiComponent implements OnInit {
   standardproducts: StandardProducts[];
   standardproduct: StandardProducts;
   standardproductToAdd: StandardProducts;
+  selectedSP: StandardProducts[];
 
   constructor(private standardproductService: PizzaAPIService, 
     private route:ActivatedRoute, private router:Router ) { }
@@ -50,7 +51,6 @@ export class StandardproductApiComponent implements OnInit {
         console.log("Error occurred: " + err);
       };
     }
-
     SendToHome(){
       this.router.navigate(['home']);
     }

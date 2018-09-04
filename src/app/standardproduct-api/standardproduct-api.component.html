@@ -1,7 +1,8 @@
-<table class="">
-  <tr *ngFor="let standardproduct of standardproducts">
-    <td>{{standardproduct.Name}} - {{standardproduct.Description}} - {{standardproduct.Price}} - {{standardproduct.Category}}</td>
-  </tr>
-</table><br>
-<a href="home" (click)="SendMeHome()">Go Home</a>
+  <h1>Pick one or many standard products</h1>
+  <form *ngFor="let standardproduct of standardproducts">
+    <input type="checkbox">{{standardproduct.Name}} - {{standardproduct.Description}} - {{standardproduct.Price}} - {{standardproduct.Category}}
+  </form><br>
+  <button type="button">Send to Cart</button>
+  <br><br>
+  <a href="home" (click)="SendMeHome()">Go Home</a>
 
