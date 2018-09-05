@@ -13,10 +13,11 @@ import { resolve, reject } from 'q';
 })
 export class PizzaAPIService {
 
-  url: string = "http://localhost:55672/api/Account/Register";
-  urlIngredients: string = "https://revproject2api.azurewebsites.net/api/Ingredients";
-  urlSP: string = "https://revproject2api.azurewebsites.net/api/StandardProducts";
-  urlSC: string = "https://revproject2api.azurewebsites.net/api/ShoppingCart"
+  url: string = "https://revproject2api.azurewebsites.net/api";
+  urlAccount = this.url+"/Account";
+  urlIngredients: string = this.url+"/Ingredients";
+  urlSP: string = this.url+"/StandardProducts";
+  urlSC: string = this.url+"/ShoppingCart"
 
   accounts: Observable<AccountRegister[]>;
   account: Observable<AccountRegister>;
@@ -43,33 +44,30 @@ export class PizzaAPIService {
     return throwError(
       'Something bad happened; please try again later.');
   };
-
-  login(login: Login): Observable<string> {
-    //this.token = '123';
+  login(login: Login): Observable<HttpResponse<loginResponse>>{
     var options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
       observe: 'response' as 'response'
     };
-    var response =  this.client.post<loginResponse>(
-        this.url = "http://localhost:55672/api/Account/Login", JSON.stringify(login), options
-    ).toPromise().then(
-        x => this.token = x.body.access_token,
-        error => console.error(error)
-      );
-    
-    return of(this.token);
+    /*
+    this.client.post<loginResponse>(
+      this.url = "http://localhost:55672/api/Account/Login", JSON.stringify(login), options
+    )*/
+    return this.client.post<loginResponse>(
+       this.urlAccount+"/Login", JSON.stringify(login), options
+    )
   }
 
   getAccount(id) {
-    var newUrl = this.url + `/${id}`;
+    var newUrl = this.urlAccount + `/${id}`;
     var account = this.client.get<AccountRegister>(newUrl);
     return account;
   }
 
   getAccounts() {
-    return this.client.get<AccountRegister[]>(this.url);
+    return this.client.get<AccountRegister[]>(this.urlAccount);
   }
 
   addAccount(newAccount: AccountRegister) {
@@ -83,7 +81,7 @@ export class PizzaAPIService {
       PhoneNumber: newAccount.PhoneNumber,
       Active: newAccount.Active
     };
-    return this.client.post<AccountRegister>(this.url, body, {
+    return this.client.post<AccountRegister>(this.urlAccount, body, {
       headers
     });
   }
@@ -99,7 +97,7 @@ export class PizzaAPIService {
       PhoneNumber: editAccount.PhoneNumber,
       Active: editAccount.Active
     };
-    return this.client.put<AccountRegister>(this.url + '/' + editAccount, body, {
+    return this.client.put<AccountRegister>(this.urlAccount + '/' + editAccount, body, {
       headers
     });
   }
@@ -127,7 +125,7 @@ export class PizzaAPIService {
       Category: newStandardProduct.Category,
       Price: newStandardProduct.Price
     };
-    return this.client.post<StandardProducts>(this.url, body, {
+    return this.client.post<StandardProducts>(this.urlSP, body, {
       headers
     });
   }
@@ -143,6 +141,7 @@ export class loginResponse {
 }
 
 export class AccountRegister {
+  Id?: number
   Email: string;
   Password: string;
   ConfirmPassword: string;

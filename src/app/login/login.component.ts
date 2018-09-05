@@ -26,7 +26,15 @@ export class LoginComponent implements OnInit {
     this.Login.Password = password;
     var token : string;
     
-    this.API.login(this.Login).subscribe(serviceToken => { token = serviceToken; } );
+    let promise = new Promise((resolve, release) => {
+      this.API.login(this.Login).toPromise()
+      .then(
+        //serviceToken => { token = serviceToken; resolve(token = serviceToken);}
+        response => { console.log(response.body.access_token); resolve( this.token = response.body.access_token ); }
+      );
+    });
+    
+    console.log(token);
   }
 
   SendToRegister(){
