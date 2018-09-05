@@ -14,12 +14,22 @@ export class StandardproductApiComponent implements OnInit {
   standardproduct: StandardProducts;
   standardproductToAdd: StandardProducts;
   //selectedSP: StandardProducts[];
+  Checked : boolean[];
 
   constructor(private standardproductService: PizzaAPIService, 
     private route:ActivatedRoute, private router:Router ) { }
 
   ngOnInit() {
     this.getStandardProducts()
+  }
+
+  checked(id) {
+    if(!this.Checked[id]) {
+      this.Checked[id] = true;
+    }
+    else {
+      this.Checked[id] = false;
+    }
   }
 
   getStandardProduct(id) {

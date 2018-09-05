@@ -30,11 +30,16 @@ export class LoginComponent implements OnInit {
       this.API.login(this.Login).toPromise()
       .then(
         //serviceToken => { token = serviceToken; resolve(token = serviceToken);}
-        response => { console.log(response.body.access_token); resolve( this.token = response.body.access_token ); }
+        //response => { console.log(response.body.access_token); resolve(  ); }
+        serviceToken => 
+        {
+          delay(500);
+          sessionStorage.setItem('auth', serviceToken.body.access_token);
+          token = sessionStorage.getItem('auth');
+        }
       );
     });
-    
-    console.log(token);
+    console.log(sessionStorage.getItem('auth'));
   }
 
   SendToRegister(){

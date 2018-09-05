@@ -1,7 +1,11 @@
   <h1>Pick one or many standard products</h1>
-  <form *ngFor="let standardproduct of standardproducts">
-    <input type="checkbox">{{standardproduct.Name}} - {{standardproduct.Description}} - {{standardproduct.Price}} - {{standardproduct.Category}}
-  </form><br>
+  <div>{{stringProductsArray}}</div>
+    
+  <div *ngFor="let sp of standardproducts;">
+    <input type="checkbox" id="{{sp.Id}}" >
+    <label for="{{sp.Id}}">"{{sp.Name}} - {{sp.Description}} - {{sp.Price}} - {{sp.Category}}"</label>
+  </div>    
+  <br>
   <button type="button">Send to Cart</button>
   <br><br>
   <a href="home" (click)="SendMeHome()">Go Home</a>
